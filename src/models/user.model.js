@@ -53,7 +53,7 @@ const userSchema = new Schema({
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     // ye code har bar password save karega encrypt krke chahe koi aur field update kare so now we will use if condition 
-    this.password = bcrypt.hash(this.password,)
+    this.password = await bcrypt.hash(this.password,)
     next();
 })
 userSchema.methods.isPasswordCorrect = async function (password) {
